@@ -30,10 +30,42 @@ class Data
             "physic" => $student->getPhysic(),
             "chemistry" => $student->getChemistry(),
         ];
-
+        //lay ra du lieu cu
         $students = $this->loadData();
 //        $students[] = $student;
-        array_push($students,$data);
+        array_push($students,$data); // thay doi (them phan tu)
+
+        $this->saveData($students); //Luu du lieu moi vao json
+    }
+
+    public function deleteStudent($id)
+    {
+        $students = $this->loadData();
+        array_splice($students,$id,1);
+        $this->saveData($students);
+    }
+
+    public function getStudentById($id)
+    {
+        $students = $this->loadData();
+        $s = $students[$id];
+        $student = new Student($s->name,$s->age);
+        $student->setScore($s->math,$s->physic,$s->chemistry);
+        return $student;
+
+    }
+
+    public function updateStudent($id, $student)
+    {
+        $data = [
+            "name" => $student->getName(),
+            "age" => $student->getAge(),
+            "math" => $student->getMath(),
+            "physic" => $student->getPhysic(),
+            "chemistry" => $student->getChemistry(),
+        ];
+        $students = $this->loadData();
+        $students[$id] = $data;
         $this->saveData($students);
     }
 

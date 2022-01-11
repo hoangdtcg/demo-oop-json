@@ -26,6 +26,7 @@ $students = $data->loadData();
             <th>Age</th>
             <th>Total Point</th>
             <th>Avg Point</th>
+            <th colspan="2">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -36,6 +37,9 @@ $students = $data->loadData();
             <td><?php echo $student->getAge();?></td>
             <td><?php echo $student->getSumScore() ?></td>
             <td><?php echo $student->getAvgScore() ?></td>
+            <td><a href="detail.php?id=<?php echo $key?>">Detail</a></td>
+            <td><a href="update.php?id=<?php echo $key?>">Update</a></td>
+            <td><a onclick="return confirm('Are you sure you want to delete?')" href="delete.php?id=<?php echo $key?>">Delete</a></td>
         </tr>
         <?php endforeach; ?>
         </tbody>
